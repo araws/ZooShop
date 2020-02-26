@@ -1,5 +1,8 @@
 package pl.antygravity.zooShop;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
     private String street;
     private int houseNumber;

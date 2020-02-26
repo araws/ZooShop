@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Service
-public class CostumerService {
+public class CustomerService {
 
     @PersistenceContext
     EntityManager entityManager;

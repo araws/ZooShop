@@ -1,27 +1,26 @@
 package pl.antygravity.zooShop;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Costumer {
+public class Customer {
 
     @Id
     @GeneratedValue
     private long id;
     private String name;
-    //  private Address costumerAddress;
+    @Embedded
+    private Address customerAddress;
     private String emailAddress;
     private long phoneNumber;
 
-    public Costumer() {
+    public Customer() {
     }
 
-    public Costumer(String name, /*Address costumerAddress,*/ String emailAddress, long phoneNumber) {
+    public Customer(String name, Address customerAddress, String emailAddress, long phoneNumber) {
         this.id = id;
         this.name = name;
-        //this.costumerAddress = costumerAddress;
+        this.customerAddress = customerAddress;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
     }

@@ -23,9 +23,9 @@ public class ZooShopApplication {
         };
     }
     @Bean
-    public CommandLineRunner demo2(CostumerRepository costumerRepository) {
+    public CommandLineRunner demo2(CustomerRepository customerRepository) {
         return (args) -> {
-            costumerRepository.save(new Costumer("Zenon Laskowik" , "asd@dsad",234234));
+            customerRepository.save(new Customer("Zenon Laskowik", address , "asd@dsad",234234));
         };
     }
 

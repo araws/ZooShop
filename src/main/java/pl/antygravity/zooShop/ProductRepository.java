@@ -12,5 +12,9 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Override
     Optional<Product> findById(Long id);
-    // nie wiem :)
+
+    Product save(Product entity);
+
+    @Override
+    void delete(Product entity);
 }

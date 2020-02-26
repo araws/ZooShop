@@ -1,10 +1,10 @@
 package pl.antygravity.zooShop;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,24 +14,40 @@ public class ProductController {
     ProductRepository repository;
 
     @GetMapping("/products")
-    public Iterable<Product> getProducts() {
-        return repository.findAll();
+    public Iterable<Product> getProducts(@RequestParam(value = "name", required = false) String name) {
+        if (name == null) {
+            return repository.findAll();
+        } else {
+            Product byName = repository.findByName(name);
+            List<Product> productsFoundByName = new ArrayList<>();
+            productsFoundByName.add(byName);
+            return productsFoundByName;
+        }
     }
 
-    @GetMapping("/products/{name}")
-    public Product getProductByName(@PathVariable("name") String name) {
-        return repository.findByName(name);
+    @GetMapping("/products/{id}")
+    public Optional<Product> getProductById(@PathVariable("id") Long id) {
+        return repository.findById(id);
     }
 
-// (   @GetMapping("/products/{id}")
-//    public Optional<Product> getProductById(@PathVariable("id") Long id) {
-//        return repository.findById(id);
-//        // wiem że jest to źle  - wyszukiwanie jest takie samo jak w getProductByName
-//    })
+    @PostMapping("/products")
+    public Product createNewProduct(@RequestBody Product product) {
+        return repository.save(product);
+    }
 
-    // GET /products/{id}
-    // GET /products?name=value&price=value
-    // POST - tworzenie
-    // DELETE - usuwanie
-    // UPDATE
+    @DeleteMapping("/products")
+    public void deleteProduct(@RequestParam("name") String name) {
+        repository.delete(repository.findByName(name));
+    }
+
+    @PutMapping("/products/{id}")
+    public void updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
+
+        Optional<Product> byId = repository.findById(id);
+        if (byId.isPresent()){
+            byId.get().setName(product.getName());
+            byId.get().setPrice(product.getPrice());
+            repository.save(byId.get());
+        };
+    }
 }

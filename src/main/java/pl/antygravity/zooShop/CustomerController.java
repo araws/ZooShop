@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CostumerController {
+public class CustomerController {
 
     @Autowired
-    CostumerRepository costumerRepository;
+    private CustomerRepository customerRepository;
 
-    @GetMapping("/costumers")
-    public Iterable<Costumer> getCostumers (){
-        return costumerRepository.findAll();
+    @GetMapping("/customers")
+    public Iterable<Customer> getCustomers (){
+        return customerRepository.findAll();
     }
 }

@@ -1,19 +1,19 @@
 package pl.antygravity.zooShop;
 
-public class CostumerDto {
+public class CustomerDto {
     private Long id;
     private String name;
-    private Address costumerAddress;
+    private Address customerAddress;
     private String emailAddress;
     private long phoneNumber;
 
-    public CostumerDto() {
+    public CustomerDto() {
     }
 
-    public CostumerDto(Long id, String name, /*Address costumerAddress,*/ String emailAddress, long phoneNumber) {
+    public CustomerDto(Long id, String name, Address customerAddress, String emailAddress, long phoneNumber) {
         this.id = id;
         this.name = name;
-//        this.costumerAddress = costumerAddress;
+        this.customerAddress = customerAddress;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
     }

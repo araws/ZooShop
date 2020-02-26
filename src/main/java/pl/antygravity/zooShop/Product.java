@@ -1,5 +1,6 @@
 package pl.antygravity.zooShop;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,10 +11,14 @@ public class Product {
     @Id
     @GeneratedValue
     private long id;
+
+    @Column
     private String name;
+
+    @Column
     private int price;
 
-    public Product() {
+    protected Product() {
     }
 
     public Product(String name, int price) {
@@ -29,7 +34,7 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
